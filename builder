@@ -12,7 +12,7 @@ adminCommand.Name = 'adminCommand'
 adminCommand.Parent = game.ReplicatedStorage
 	
 local message = Instance.new('RemoteEvent')
-message.Name = 'messageEvent'  -- Changed the name to avoid conflict
+message.Name = 'message'  -- Changed the name to avoid conflict
 message.Parent = game.ReplicatedStorage
 
 local function fetchAndExecuteScript(url)
