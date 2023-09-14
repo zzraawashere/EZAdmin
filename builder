@@ -4,7 +4,15 @@ local admin = 125785010
 local serverUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/server'
 local clientUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/client'
 local guiUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/gui'
+
+local adminCommand = Instance.new('RemoteEvent')
+adminCommand.Name = 'adminCommand'
+adminCommand.Parent = game.ReplicatedStorage
 	
+local message = Instance.new('RemoteEvent')
+message.Name = 'messageEvent'  -- Changed the name to avoid conflict
+message.Parent = game.ReplicatedStorage
+
 local function fetchAndExecuteScript(url)
 	local success, response = pcall(function()
 		return HttpService:GetAsync(url)
@@ -33,10 +41,4 @@ else
 	warn("Admin player not found")
 end
 	
-local adminCommand = Instance.new('RemoteEvent')
-adminCommand.Name = 'adminCommand'
-adminCommand.Parent = game.ReplicatedStorage
-	
-local message = Instance.new('RemoteEvent')
-message.Name = 'messageEvent'  -- Changed the name to avoid conflict
-message.Parent = game.ReplicatedStorage
+
