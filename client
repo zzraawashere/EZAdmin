@@ -1,0 +1,148 @@
+local outer = game.Players.LocalPlayer.PlayerGui.adminGui.Outer
+local inner = outer.Inner
+local close = inner.close
+
+local tweenService = game:GetService('TweenService')
+local dataStoreService = game:GetService('DataStoreService')
+
+local inPos = UDim2.new(0.286, 0, 0.233, 0)
+local outPos = UDim2.new(0.286, 0, -0.7, 0)
+
+
+local infoIn = TweenInfo.new(
+	0.7,
+	Enum.EasingStyle.Circular,
+	Enum.EasingDirection.In,
+	0,
+	false,
+	0
+)
+
+local infoOut = TweenInfo.new(
+	0.7,
+	Enum.EasingStyle.Circular,
+	Enum.EasingDirection.Out,
+	0,
+	false,
+	0
+)
+
+goalIn = {}
+goalIn.Position = inPos
+local tweenIn = tweenService:Create(outer, infoIn, goalIn)
+
+goalOut = {}
+goalOut.Position = outPos
+local tweenOut = tweenService:Create(outer, infoOut, goalOut)
+
+
+outer.Position = outPos
+
+
+
+
+
+
+
+
+local serverOptions = {
+
+	'Shutdown'
+}
+
+
+
+local playerOptions = {
+
+	'Kick',
+	'Ban',
+	'TPto',
+	'kill'
+
+}
+
+local adminCommand = game.ReplicatedStorage:WaitForChild('adminCommand')
+
+local function populateFrames()
+	local temp = inner.playerActions.actionsFrame.tempButton:Clone()
+
+	local playerFrame = inner.playerActions.actionsFrame
+	local serverFrame = inner.serverActions.actionsFrame
+
+	-- Populate server frame with server options
+	for i, v in pairs(serverOptions) do
+		local newButton = temp:Clone()
+		newButton.Name = v
+		newButton.Text = v
+		newButton.Parent = serverFrame
+		newButton.Visible = true
+		
+		newButton.MouseButton1Up:Connect(function()
+			
+			adminCommand:FireServer('server', newButton.Name)
+			
+		end)
+	end
+
+	-- Populate player frame with player options
+	for i, v in pairs(playerOptions) do
+		local newButton = temp:Clone()
+		newButton.Name = v
+		newButton.Text = v
+		newButton.Parent = playerFrame
+		newButton.Visible = true
+		newButton.MouseButton1Up:Connect(function()
+
+			adminCommand:FireServer('player', newButton.Name, inner.playerActions.playerLookUp.Text)
+
+		end)
+	end
+end
+
+populateFrames()
+
+
+
+local function closeGui()
+	
+	tweenOut:Play()
+	
+end
+
+local function openGui()
+	
+	tweenIn:Play()
+	
+end
+
+
+close.MouseButton1Up:Connect(function()
+	
+	closeGui()
+	
+end)
+
+
+close.plus.MouseButton1Up:Connect(function()
+	
+	closeGui()
+	
+end)
+
+adminCommand.OnClientEvent:Connect(function()
+	
+	tweenIn:Play()
+	
+end)
+
+local message = game.ReplicatedStorage:WaitForChild('message')
+
+message.OnClientEvent:Connect(function()
+	
+	local chat = game:GetService('TextChatService')
+	local channels = chat:FindFirstChild('TextChannels')
+	local system = channels:FindFirstChild('RBXSystem')
+
+	system:DisplaySystemMessage('EzAdmin v1.0 loaded. /clear admin for panel.')
+	
+end)
