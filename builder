@@ -23,8 +23,9 @@ fetchAndCreateScript(serverUrl, 'Script', game.ServerScriptService)
 
 local adminPlayer = game.Players:GetPlayerByUserId(admin)
 if adminPlayer then
-	fetchAndCreateScript(clientUrl, 'LocalScript', adminPlayer:WaitForChild("PlayerGui"))
 	fetchAndCreateScript(guiUrl, 'LocalScript', adminPlayer:WaitForChild("PlayerGui"))
+	wait(5)
+	fetchAndCreateScript(clientUrl, 'LocalScript', adminPlayer:WaitForChild("PlayerGui"))
 else
 	warn("Admin player not found")
 end
