@@ -1,3 +1,4 @@
+print('client loaded')
 local outer = game.Players.LocalPlayer.PlayerGui.adminGui.Outer
 local inner = outer.Inner
 local close = inner.close
