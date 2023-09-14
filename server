@@ -1,3 +1,4 @@
+print('server loaded')
 local dataStoreService = game:GetService('DataStoreService')
 local admin = 125785010
 
