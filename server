@@ -1,0 +1,90 @@
+local dataStoreService = game:GetService('DataStoreService')
+local admin = 125785010
+
+local serverOptions = {
+	Shutdown = function()
+		print("The server is shutting down...")
+		while wait(1) do
+			for i,v in pairs(game.Players:GetPlayers()) do
+				v:Kick("The server is shutting down")
+			end
+		end
+	end,
+}
+
+local banData = dataStoreService:GetDataStore('bans')
+
+local playerOptions = {
+	Kick = function(player)
+		print("Kicking player: " .. player.Name)
+		player:Kick('You have been kicked.')
+	end,
+
+	Ban = function(player)
+		print("Banning player: " .. player.Name)
+		banData:SetAsync(player.UserId, true)
+		player:Kick('You have been banned.')
+	end,
+
+	TPto = function(target)
+		local adminPlayer = game.Players:GetPlayerByUserId(admin)
+		local targetPlayer = game.Players:FindFirstChild(target)
+
+		if adminPlayer and targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+			adminPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame
+			print("Teleported admin to target.")
+		else
+			print("Teleportation failed. Check if both admin and target exist and are in correct locations.")
+		end
+	end,
+
+
+	Kill = function(player)
+		if player and player.Character then
+			print("Killing player: " .. player.Name)
+			local humanoid = player.Character:FindFirstChildOfClass('Humanoid')
+			if humanoid then
+				humanoid.Health = 0
+			end
+		end
+	end,
+}
+
+local adminCommand = game.ReplicatedStorage:WaitForChild('adminCommand')
+
+adminCommand.OnServerEvent:Connect(function(player, commandType, commandName, target, extra)
+	print('event', commandType, commandName)
+	if commandType == 'server' then
+		if serverOptions[commandName] then
+			serverOptions[commandName]()
+			print('server command '..commandName..'executed')
+		end
+	elseif commandType == 'player' then
+		local targetPlayer = game.Players:FindFirstChild(target)
+		if targetPlayer and playerOptions[commandName] then
+			playerOptions[commandName](targetPlayer)
+		end
+	end
+end)
+
+
+
+
+local adminPanelEvent = game.ReplicatedStorage:WaitForChild('adminCommand')
+
+local message = game.ReplicatedStorage:WaitForChild('message')
+
+game.Players.PlayerAdded:Connect(function(player)
+	if player.UserId == admin then
+		
+		message:FireClient(game.Players:GetPlayerByUserId(admin))
+		
+		player.Chatted:Connect(function(message)
+			if message == "/clear admin" then
+				adminPanelEvent:FireClient(player)
+			end
+		end)
+	end
+end)
+
+
