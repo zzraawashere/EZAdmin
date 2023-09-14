@@ -1,0 +1,256 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local adminGui = Instance.new("ScreenGui")
+local Outer = Instance.new("Frame")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local UICorner = Instance.new("UICorner")
+local Inner = Instance.new("Frame")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+local UICorner_2 = Instance.new("UICorner")
+local title = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local close = Instance.new("TextButton")
+local plus = Instance.new("ImageButton")
+local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+local playerActions = Instance.new("Folder")
+local label = Instance.new("TextLabel")
+local playerLookUp = Instance.new("TextBox")
+local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
+local UICorner_4 = Instance.new("UICorner")
+local actionsFrame = Instance.new("ScrollingFrame")
+local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
+local UIListLayout = Instance.new("UIListLayout")
+local tempButton = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local serverActions = Instance.new("Folder")
+local label_2 = Instance.new("TextLabel")
+local actionsFrame_2 = Instance.new("ScrollingFrame")
+local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local tempButton_2 = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+
+--Properties:
+
+adminGui.Name = "adminGui"
+adminGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+adminGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Outer.Name = "Outer"
+Outer.Parent = adminGui
+Outer.BackgroundColor3 = Color3.fromRGB(94, 94, 94)
+Outer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Outer.BorderSizePixel = 0
+Outer.Position = UDim2.new(0.286000013, 0, 0.232999995, 0)
+Outer.Size = UDim2.new(0.415693969, 0, 0.532188833, 0)
+
+UIAspectRatioConstraint.Parent = Outer
+UIAspectRatioConstraint.AspectRatio = 1.600
+
+UICorner.CornerRadius = UDim.new(0.0199999996, 0)
+UICorner.Parent = Outer
+
+Inner.Name = "Inner"
+Inner.Parent = Outer
+Inner.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+Inner.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Inner.BorderSizePixel = 0
+Inner.ClipsDescendants = true
+Inner.Position = UDim2.new(0.0178374518, 0, 0.018817205, 0)
+Inner.Size = UDim2.new(0.965053678, 0, 0.965053737, 0)
+
+UIAspectRatioConstraint_2.Parent = Inner
+UIAspectRatioConstraint_2.AspectRatio = 1.600
+
+UICorner_2.CornerRadius = UDim.new(0.0199999996, 0)
+UICorner_2.Parent = Inner
+
+title.Name = "title"
+title.Parent = Inner
+title.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+title.BorderSizePixel = 0
+title.Size = UDim2.new(1, 0, 0.139275759, 0)
+
+UICorner_3.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_3.Parent = title
+
+TextLabel.Parent = title
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.325557083, 0, 0, 0)
+TextLabel.Size = UDim2.new(0.348189414, 0, 1.00000012, 0)
+TextLabel.Font = Enum.Font.Ubuntu
+TextLabel.Text = "EzAdmin v1"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+close.Name = "close"
+close.Parent = Inner
+close.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+close.BorderSizePixel = 0
+close.ClipsDescendants = true
+close.Position = UDim2.new(0.917479098, 0, 0.0111420611, 0)
+close.Size = UDim2.new(0.0713788271, 0, 0.114206128, 0)
+close.Font = Enum.Font.SourceSans
+close.Text = ""
+close.TextColor3 = Color3.fromRGB(0, 0, 0)
+close.TextSize = 14.000
+
+plus.Name = "plus"
+plus.Parent = close
+plus.BackgroundTransparency = 1.000
+plus.Position = UDim2.new(0.109756097, 0, 0.13902469, 0)
+plus.Rotation = 45.000
+plus.Size = UDim2.new(0.853658557, 0, 0.740980923, 0)
+plus.ZIndex = -1
+plus.Image = "rbxassetid://6764432408"
+plus.ImageRectOffset = Vector2.new(100, 454)
+plus.ImageRectSize = Vector2.new(50, 50)
+
+UIAspectRatioConstraint_3.Parent = plus
+
+UIAspectRatioConstraint_4.Parent = close
+
+playerActions.Name = "playerActions"
+playerActions.Parent = Inner
+
+label.Name = "label"
+label.Parent = playerActions
+label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+label.BackgroundTransparency = 1.000
+label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+label.BorderSizePixel = 0
+label.Position = UDim2.new(0.0626740903, 0, 0.161559895, 0)
+label.Size = UDim2.new(0.363857925, 0, 0.0837889463, 0)
+label.Font = Enum.Font.Ubuntu
+label.Text = "Player:"
+label.TextColor3 = Color3.fromRGB(0, 0, 0)
+label.TextScaled = true
+label.TextSize = 14.000
+label.TextWrapped = true
+label.TextXAlignment = Enum.TextXAlignment.Left
+
+playerLookUp.Name = "playerLookUp"
+playerLookUp.Parent = playerActions
+playerLookUp.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+playerLookUp.BorderColor3 = Color3.fromRGB(0, 0, 0)
+playerLookUp.BorderSizePixel = 0
+playerLookUp.Position = UDim2.new(0.0626740903, 0, 0.26462397, 0)
+playerLookUp.Size = UDim2.new(0.363857865, 0, 0.0831675082, 0)
+playerLookUp.Font = Enum.Font.Ubuntu
+playerLookUp.Text = ""
+playerLookUp.TextColor3 = Color3.fromRGB(0, 0, 0)
+playerLookUp.TextScaled = true
+playerLookUp.TextSize = 14.000
+playerLookUp.TextWrapped = true
+
+UIAspectRatioConstraint_5.Parent = playerLookUp
+UIAspectRatioConstraint_5.AspectRatio = 7.000
+
+UICorner_4.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_4.Parent = playerLookUp
+
+actionsFrame.Name = "actionsFrame"
+actionsFrame.Parent = playerActions
+actionsFrame.Active = true
+actionsFrame.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+actionsFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+actionsFrame.BorderSizePixel = 0
+actionsFrame.Position = UDim2.new(0.0626740903, 0, 0.370473534, 0)
+actionsFrame.Size = UDim2.new(0.363857925, 0, 0.582172632, 0)
+
+UIAspectRatioConstraint_6.Parent = actionsFrame
+
+UIListLayout.Parent = actionsFrame
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.Padding = UDim.new(0.00999999978, 0)
+
+tempButton.Name = "tempButton"
+tempButton.Parent = actionsFrame
+tempButton.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+tempButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+tempButton.BorderSizePixel = 0
+tempButton.Position = UDim2.new(0.0940617025, 0, 0.0313538983, 0)
+tempButton.Size = UDim2.new(0.75, 0, 0.0500000007, 0)
+tempButton.Visible = false
+tempButton.Font = Enum.Font.Ubuntu
+tempButton.Text = "holder"
+tempButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+tempButton.TextScaled = true
+tempButton.TextSize = 14.000
+tempButton.TextWrapped = true
+
+UICorner_5.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_5.Parent = tempButton
+
+UITextSizeConstraint.Parent = tempButton
+UITextSizeConstraint.MaxTextSize = 30
+
+serverActions.Name = "serverActions"
+serverActions.Parent = Inner
+
+label_2.Name = "label"
+label_2.Parent = serverActions
+label_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+label_2.BackgroundTransparency = 1.000
+label_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+label_2.BorderSizePixel = 0
+label_2.Position = UDim2.new(0.560584962, 0, 0.161559895, 0)
+label_2.Size = UDim2.new(0.363857925, 0, 0.0837889463, 0)
+label_2.Font = Enum.Font.Ubuntu
+label_2.Text = "Server:"
+label_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+label_2.TextScaled = true
+label_2.TextSize = 14.000
+label_2.TextWrapped = true
+label_2.TextXAlignment = Enum.TextXAlignment.Left
+
+actionsFrame_2.Name = "actionsFrame"
+actionsFrame_2.Parent = serverActions
+actionsFrame_2.Active = true
+actionsFrame_2.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+actionsFrame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+actionsFrame_2.BorderSizePixel = 0
+actionsFrame_2.Position = UDim2.new(0.560584962, 0, 0.370473534, 0)
+actionsFrame_2.Size = UDim2.new(0.363857925, 0, 0.582172632, 0)
+
+UIAspectRatioConstraint_7.Parent = actionsFrame_2
+
+UIListLayout_2.Parent = actionsFrame_2
+UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout_2.Padding = UDim.new(0.00999999978, 0)
+
+tempButton_2.Name = "tempButton"
+tempButton_2.Parent = actionsFrame_2
+tempButton_2.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+tempButton_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+tempButton_2.BorderSizePixel = 0
+tempButton_2.Position = UDim2.new(0.0940617025, 0, 0.0313538983, 0)
+tempButton_2.Size = UDim2.new(0.75, 0, 0.0500000007, 0)
+tempButton_2.Visible = false
+tempButton_2.Font = Enum.Font.Ubuntu
+tempButton_2.Text = "holder"
+tempButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+tempButton_2.TextScaled = true
+tempButton_2.TextSize = 14.000
+tempButton_2.TextWrapped = true
+
+UICorner_6.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_6.Parent = tempButton_2
+
+UITextSizeConstraint_2.Parent = tempButton_2
+UITextSizeConstraint_2.MaxTextSize = 30
+
