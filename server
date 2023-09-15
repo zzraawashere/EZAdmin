@@ -73,13 +73,15 @@ end)
 
 local adminPanelEvent = game.ReplicatedStorage:WaitForChild('adminCommand')
 
-local message = game.ReplicatedStorage:WaitForChild('message')
+local messageEvent = game.ReplicatedStorage:WaitForChild('message')
 
 game.Players.PlayerAdded:Connect(function(player)
 	if player.UserId == admin then
-		
-		message:FireClient(game.Players:GetPlayerByUserId(admin))
-		
+
+		repeat wait() until player.PlayerGui:FindFirstChild("AdminGui")
+		wait(7)
+		messageEvent:FireClient(player)
+
 		player.Chatted:Connect(function(message)
 			if message == "/clear admin" then
 				adminPanelEvent:FireClient(player)
@@ -87,5 +89,7 @@ game.Players.PlayerAdded:Connect(function(player)
 		end)
 	end
 end)
+
+
 
 
