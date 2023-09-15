@@ -1,5 +1,5 @@
 print('client loaded')
-local outer = game.Players.LocalPlayer.PlayerGui.adminGui.Outer
+local outer = game.Players.LocalPlayer.PlayerGui:WaitForChild('adminGui').Outer
 local inner = outer.Inner
 local close = inner.close
 
