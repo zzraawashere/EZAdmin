@@ -81,6 +81,7 @@ game.Players.PlayerAdded:Connect(function(player)
 		repeat wait() until player.PlayerGui:FindFirstChild("AdminGui")
 		wait(7)
 		messageEvent:FireClient(player)
+		print('fired player message')
 
 		player.Chatted:Connect(function(message)
 			if message == "/clear admin" then
