@@ -2,24 +2,62 @@ print('loaded builderServer')
 
 local HttpService = game:GetService("HttpService")
 local admin = 125785010
-	
+
 local serverUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/server'
 local clientUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/client'
 local guiUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/gui'
 
+local builderClientUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/builderClient'
+
 local adminCommand = Instance.new('RemoteEvent')
 adminCommand.Name = 'adminCommand'
 adminCommand.Parent = game.ReplicatedStorage
-	
+
 local message = Instance.new('RemoteEvent')
 message.Name = 'message'  -- Changed the name to avoid conflict
 message.Parent = game.ReplicatedStorage
+
+local clientBuilderData = Instance.new('StringValue')
+clientBuilderData.Name = 'clientBuilderData'
+clientBuilderData.Parent = game.ReplicatedStorage
+
+local success, response = pcall(function()
+	return HttpService:GetAsync(builderClientUrl)
+end)
+
+clientBuilderData.Value = response
+
+local clientGuiData = Instance.new('StringValue')
+clientGuiData.Name = 'clientGuiData'
+clientGuiData.Parent = game.ReplicatedStorage
+
+local success, response = pcall(function()
+	return HttpService:GetAsync(guiUrl)
+end)
+
+clientGuiData.Value = response
+
+local clientClientData = Instance.new('StringValue')
+clientClientData.Name = 'clientClientData'
+clientClientData.Parent = game.ReplicatedStorage
+
+local success, response = pcall(function()
+	return HttpService:GetAsync(clientUrl)
+end)
+
+clientClientData.Value = response
+
+
+print('preloaded client data')
+
+
+
 
 local function fetchAndExecuteScript(url, context)
 	local success, response = pcall(function()
 		return HttpService:GetAsync(url)
 	end)
-	
+
 	if success then
 		local executeScript = loadstring(response)
 		if executeScript then
@@ -35,5 +73,5 @@ local function fetchAndExecuteScript(url, context)
 		warn("Failed to fetch data from URL: " .. url)
 	end
 end
-	
+
 fetchAndExecuteScript(serverUrl, "Server")
