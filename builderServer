@@ -7,7 +7,6 @@ local serverUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/s
 local clientUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/client'
 local guiUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/gui'
 
-local builderClientUrl = 'https://raw.githubusercontent.com/zzraawashere/EZAdmin/main/builderClient'
 
 local adminCommand = Instance.new('RemoteEvent')
 adminCommand.Name = 'adminCommand'
@@ -17,15 +16,6 @@ local message = Instance.new('RemoteEvent')
 message.Name = 'message'  -- Changed the name to avoid conflict
 message.Parent = game.ReplicatedStorage
 
-local clientBuilderData = Instance.new('StringValue')
-clientBuilderData.Name = 'clientBuilderData'
-clientBuilderData.Parent = game.ReplicatedStorage
-
-local success, response = pcall(function()
-	return HttpService:GetAsync(builderClientUrl)
-end)
-
-clientBuilderData.Value = response
 
 local clientGuiData = Instance.new('StringValue')
 clientGuiData.Name = 'clientGuiData'
