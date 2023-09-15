@@ -78,8 +78,7 @@ local messageEvent = game.ReplicatedStorage:WaitForChild('message')
 game.Players.PlayerAdded:Connect(function(player)
 	if player.UserId == admin then
 
-		repeat wait() until player.PlayerGui:FindFirstChild("AdminGui")
-		wait(7)
+		wait(12)
 		messageEvent:FireClient(player)
 		print('fired player message')
 
