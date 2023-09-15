@@ -76,9 +76,10 @@ local adminPanelEvent = game.ReplicatedStorage:WaitForChild('adminCommand')
 local messageEvent = game.ReplicatedStorage:WaitForChild('message')
 
 game.Players.PlayerAdded:Connect(function(player)
+	print('player '..tostring(player)..' added')
 	if player.UserId == admin then
 
-		wait(12)
+		wait(15)
 		messageEvent:FireClient(player)
 		print('fired player message')
 
